@@ -11,13 +11,13 @@ object Demo extends App {
     num <- numberService.add(1, 2)
     g <- greetingService.greet(person = Person("george", dt=DateTime.now.minusYears(5)))
     p <- greetingService.create(name="Jack")
-    z <- numberService.divideByZero(25)
+    //z <- numberService.divideByZero(25)
 
   } yield {
     println(s"a + b: $num")
     println(s"greeting: $g")
     println(s"person is: $p")
-    println(s"divide by zero: $z")
+    //println(s"divide by zero: $z")
     sys.exit(0)
   }
 }
