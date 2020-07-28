@@ -11,4 +11,8 @@ trait GreetingService {
 
   def greet(person: Person): Future[String]
   def create(name:String): Future[Person]
+
+  @PathName("getperson")
+  def create: Future[Person]
+
 }

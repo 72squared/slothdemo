@@ -6,8 +6,10 @@ import chameleon.ext.circe._
 
 import scala.concurrent.Future
 import Pickling._
+import akka.http.scaladsl.model.HttpRequest
 import covenant.core.api.ApiDsl
-
+import covenant.http.api.HttpApiConfiguration
+import sloth.ClientException
 
 import scala.concurrent.{Await, Future}
 
@@ -22,15 +24,8 @@ object Router {
 
   import scala.concurrent.ExecutionContext.Implicits.global
 
-  type Event = String
-  type State = String
-
-  object Dsl extends ApiDsl[Event, ApiError, State] {
-    override def applyEventsToState(state: State, events: Seq[Event]): State = state + " " + events.mkString(",")
-    override def unhandledException(t: Throwable): ApiError = ApiError(t.getMessage)
-  }
-
   val router = sloth.Router[PickleType, Future]
     .route[GreetingService](GreetingServiceImpl)
     .route[NumberService](NumberServiceImpl)
+
 }

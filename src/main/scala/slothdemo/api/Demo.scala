@@ -2,7 +2,10 @@ package slothdemo.api
 
 import org.joda.time.DateTime
 import slothdemo.Person
-import Client.{numberService, greetingService}
+import Client.{greetingService, numberService}
+
+import scala.concurrent.Future
+import scala.util.{Failure, Success}
 
 object Demo extends App {
   import scala.concurrent.ExecutionContext.Implicits.global
@@ -11,13 +14,22 @@ object Demo extends App {
     num <- numberService.add(1, 2)
     g <- greetingService.greet(person = Person("george", dt=DateTime.now.minusYears(5)))
     p <- greetingService.create(name="Jack")
-    //z <- numberService.divideByZero(25)
-
+    gp <- greetingService.create
   } yield {
     println(s"a + b: $num")
     println(s"greeting: $g")
     println(s"person is: $p")
-    //println(s"divide by zero: $z")
-    sys.exit(0)
+    println(s"gp is: $gp")
+    val result =  numberService.divideByZero(25)
+    result onComplete  {
+      case Success(value) => {
+        println(value)
+        sys.exit(0)
+      }
+      case Failure(e) => {
+        println(s"bad news: $e")
+        sys.exit(1)
+      }
+    }
   }
 }
