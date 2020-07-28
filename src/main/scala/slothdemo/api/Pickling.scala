@@ -1,11 +1,11 @@
-package slothdemo.json
+package slothdemo.api
 
 import io.circe.{Decoder, Encoder}
 import org.joda.time.DateTime
 
 import scala.util.Try
 
-object JsonPickling {
+object Pickling {
 
   type PickleType = String
 

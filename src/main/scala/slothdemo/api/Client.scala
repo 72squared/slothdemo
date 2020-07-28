@@ -1,15 +1,15 @@
-package slothdemo.json
+package slothdemo.api
 
 import akka.actor.ActorSystem
 import covenant.http.HttpClient
 import slothdemo.{GreetingService, NumberService}
 import io.circe.generic.auto._, chameleon.ext.circe._
 
-object JsonClient {
+object Client {
 
   implicit val system = ActorSystem()
-  import JsonPickling._
-  val client = HttpClient[JsonPickling.PickleType](JsonConfig.url)
+  import Pickling._
+  val client = HttpClient[Pickling.PickleType](Config.url)
   val greetingService: GreetingService = client.wire[GreetingService]
   val numberService: NumberService = client.wire[NumberService]
 }
