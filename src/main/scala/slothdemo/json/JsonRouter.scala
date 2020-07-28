@@ -1,13 +1,13 @@
-package slothdemo
+package slothdemo.json
 
+import slothdemo.{GreetingService, GreetingServiceImpl, NumberService, NumberServiceImpl}
 import io.circe.generic.auto._, chameleon.ext.circe._
 
-
 import scala.concurrent.Future
+import JsonPickling._
 
 object JsonRouter {
   import cats.implicits._
-  import slothdemo.JsonPickling._
 
   import scala.concurrent.ExecutionContext.Implicits.global
 

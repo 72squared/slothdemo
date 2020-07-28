@@ -1,10 +1,12 @@
-package slothdemo
-import JsonClient._
-import org.joda.time.DateTime
+package slothdemo.json
 
+import org.joda.time.DateTime
+import slothdemo.Person
+import JsonClient.{numberService, greetingService}
 
 object JsonDemo extends App {
   import scala.concurrent.ExecutionContext.Implicits.global
+
   for {
     num <- numberService.add(1, 2)
     g <- greetingService.greet(person = Person("george", dt=DateTime.now.minusYears(5)))

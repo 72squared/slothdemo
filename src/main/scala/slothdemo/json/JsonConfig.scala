@@ -1,4 +1,4 @@
-package slothdemo
+package slothdemo.json
 
 object JsonConfig {
   val port = 8099

@@ -1,10 +1,9 @@
-package slothdemo
+package slothdemo.json
 
-import io.circe._
+import io.circe.{Decoder, Encoder}
 import org.joda.time.DateTime
 
 import scala.util.Try
-
 
 object JsonPickling {
 
